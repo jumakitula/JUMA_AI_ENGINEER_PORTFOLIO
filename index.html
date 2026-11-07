@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Juma Bakari – AI agent engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF2F7;--surface:#FFFFFF;--ink:#12254A;--muted:#4C5B7A;--line:#CBD5E4;--accent:#C77A0A;--accent-bg:#FFF1D6;--trace-bg:#12254A;--trace-ink:#E8EDF7;--trace-dim:#8EA0C4;--trace-accent:#F5B44D;--trace-ok:#7FD6A8;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1730;--surface:#13234A;--ink:#E8EDF7;--muted:#9DAECB;--line:#26396A;--accent:#F5B44D;--accent-bg:#2B2A3A;--trace-bg:#091226;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C1730;--surface:#13234A;--ink:#E8EDF7;--muted:#9DAECB;--line:#26396A;--accent:#F5B44D;--accent-bg:#2B2A3A;--trace-bg:#091226;color-scheme:dark}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif;margin:0;line-height:1.08;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.top b{font:800 19px "Bricolage Grotesque",sans-serif;letter-spacing:-.01em}
+.top nav{display:flex;gap:22px;font-weight:500;font-size:15px}
+.top nav a{text-decoration:none;color:var(--muted)}
+.top nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;padding:56px 0 88px}
+h1{font-size:clamp(38px,5.6vw,66px);font-weight:800}
+.lede{color:var(--muted);font-size:19px;max-width:30em;margin:22px 0 30px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{font:600 16px "Instrument Sans",sans-serif;padding:13px 22px;border-radius:999px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);text-decoration:none;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:transparent;color:var(--ink)}
+.trace{background:var(--trace-bg);color:var(--trace-ink);border-radius:18px;padding:20px 22px 18px;font:400 14px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;min-height:318px;position:relative;box-shadow:0 24px 50px -28px rgba(18,37,74,.55)}
+.trace .head{display:flex;justify-content:space-between;color:var(--trace-dim);font-size:12.5px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.12)}
+.trace .head button{all:unset;cursor:pointer;color:var(--trace-accent);text-decoration:underline;text-underline-offset:3px}
+.trace .head button:focus-visible{outline:2px solid var(--trace-accent);outline-offset:3px}
+.ln{display:block;opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s}
+.ln.on{opacity:1;transform:none}
+.k{color:var(--trace-accent)}.d{color:var(--trace-dim)}.ok{color:var(--trace-ok)}
+.caret{display:inline-block;width:8px;height:15px;background:var(--trace-accent);vertical-align:-2px;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+section{padding:72px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;margin-bottom:12px}
+.sub{color:var(--muted);max-width:34em;margin:0 0 36px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:30px 32px;margin-bottom:18px}
+.proj:nth-of-type(2){margin-left:48px}.proj:nth-of-type(3){margin-left:96px}
+.proj h3{font-size:clamp(23px,2.6vw,30px);font-weight:700}
+.proj p{margin:10px 0 16px;max-width:38em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px;padding:0;list-style:none}
+.chips li{font-size:13.5px;font-weight:600;padding:4px 12px;border-radius:999px;background:var(--accent-bg);color:var(--accent)}
+details summary{cursor:pointer;font-weight:600;list-style:none;display:inline-flex;align-items:center;gap:10px}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"+";display:grid;place-items:center;width:26px;height:26px;border-radius:50%;border:2px solid var(--ink);font-weight:700;line-height:1;transition:transform .2s}
+details[open] summary::before{transform:rotate(45deg)}
+details ul{margin:14px 0 0;padding-left:20px;color:var(--muted)}
+details li{margin:6px 0;max-width:40em}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mini{padding:22px 24px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.mini h3{font-size:20px;margin-bottom:6px}.mini p{margin:0;color:var(--muted);font-size:16px}
+.roles{list-style:none;margin:0;padding:0}
+.roles li{display:flex;gap:18px;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.roles b{font:700 19px "Bricolage Grotesque",sans-serif}
+.roles span{color:var(--muted)}
+.cta{text-align:left}
+.cta h2{font-size:clamp(32px,5vw,56px);max-width:12em}
+footer{padding:28px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+@media (max-width:820px){.hero{grid-template-columns:1fr;padding:28px 0 56px;gap:32px}.proj:nth-of-type(n){margin-left:0}.grid{grid-template-columns:1fr}.top nav{gap:16px}.proj{padding:24px 22px}section{padding:56px 0}}
+@media (prefers-reduced-motion:reduce){.ln{transition:none}.caret{animation:none}html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><b>Juma Bakari</b>
+    <nav aria-label="Sections"><a href="#work">Agents</a><a href="#more">More work</a><a href="#community">Community</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <main>
+  <div class="hero">
+    <div>
+      <h1>I build AI agents that plan, use tools, and remember.</h1>
+      <p class="lede">I’m a third-year AI &amp; Data Science student at Marwadi University in Rajkot, and a finalist at the Taiwan Best AI Awards 2026. Watch one of my agents work, then open the projects.</p>
+      <div class="btns"><a class="btn" href="#work">See the agents</a><button class="btn alt" id="copy" type="button">Copy my email</button></div>
+    </div>
+    <div class="trace" role="img" aria-label="An animated agent run that looks up Juma Bakari's projects and returns a summary">
+      <div class="head"><span>agent run: find_engineer</span><button id="replay" type="button">Run again</button></div>
+      <div id="log" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <section id="work">
+    <h2>Three agents I’ve built</h2>
+    <p class="sub">Each one solves a different part of the problem: memory, many customers, and teamwork between agents. Open a card to see how it works.</p>
+
+    <article class="proj">
+      <h3>A production-ready agent backend</h3>
+      <p>A reusable backend for chat agents. It keeps context across conversations, remembers things long term, and has the safety and monitoring a real deployment needs.</p>
+      <ul class="chips"><li>FastAPI</li><li>LangGraph</li><li>PostgreSQL + pgvector</li><li>Redis</li><li>Langfuse</li><li>Docker</li></ul>
+      <details open><summary>How it works</summary><ul>
+        <li>LangGraph runs the conversation as a stateful workflow, with tool calls and human-in-the-loop steps.</li>
+        <li>Long-term memory is stored as vectors in pgvector and retrieved by meaning.</li>
+        <li>The LLM layer works with multiple providers and falls back and retries when one fails.</li>
+        <li>JWT login, rate limiting, caching, and migrations protect the API; Langfuse, Prometheus, and Grafana show what’s happening.</li>
+      </ul></details>
+    </article>
+
+    <article class="proj">
+      <h3>A sales agent that serves many businesses</h3>
+      <p>One deployment powers several shops. Each business gets its own persona, product catalog, and model, and customers can chat on Telegram, WhatsApp, Instagram, or the web.</p>
+      <ul class="chips"><li>LangGraph</li><li>FastAPI</li><li>Telegram</li><li>WhatsApp</li><li>Instagram</li><li>YAML config</li></ul>
+      <details><summary>How it works</summary><ul>
+        <li>A single shared LangGraph workflow handles every tenant; a YAML file defines each business.</li>
+        <li>Channel adapters and webhooks connect each messaging app to the same agent.</li>
+        <li>Tools search products, apply promotions, and find items from a customer’s photo.</li>
+        <li>A provider factory lets each business use a different LLM.</li>
+      </ul></details>
+    </article>
+
+    <article class="proj">
+      <h3>A research team made of agents</h3>
+      <p>A search agent, a fact-checker, and a writer pass work along and return a structured report with confidence levels. It runs serverless on AWS Lambda.</p>
+      <ul class="chips"><li>LangGraph</li><li>OpenAI API</li><li>Serper API</li><li>Docker</li><li>AWS Lambda</li><li>CircleCI</li></ul>
+      <details><summary>How it works</summary><ul>
+        <li>Each agent has one job: find sources, verify claims, or write the summary.</li>
+        <li>Research settings live in configuration, so a new topic needs no code change.</li>
+        <li>Docker packages the app, CircleCI builds it, and Lambda runs it.</li>
+      </ul></details>
+    </article>
+  </section>
+
+  <section id="more">
+    <h2>Other things I’ve made</h2>
+    <p class="sub">Computer vision, indoor navigation, and a game for learning machine learning.</p>
+    <div class="grid">
+      <div class="mini"><h3>HairTool AI</h3><p>A computer-vision app that detects hair loss. Finalist at the Taiwan Best AI Awards 2026.</p></div>
+      <div class="mini"><h3>MallWay</h3><p>Indoor wayfinding for malls that uses phone sensors instead of beacons.</p></div>
+      <div class="mini"><h3>NeuralForge</h3><p>A game that teaches 100 machine learning algorithms with code and XP.</p></div>
+      <div class="mini"><h3>AI agriculture patent</h3><p>A published patent for an AI-powered agriculture solution.</p></div>
+    </div>
+  </section>
+
+  <section id="community">
+    <h2>Where I help others learn</h2>
+    <p class="sub">I run and support developer communities in India and Tanzania.</p>
+    <ul class="roles">
+      <li><b>Google Product Expert, Gemini</b><span>Helping users with Gemini</span></li>
+      <li><b>Google Student Ambassador</b><span>Campus events on AI tools</span></li>
+      <li><b>AWS User Group Rajkot</b><span>Cloud community volunteer</span></li>
+      <li><b>Dar es Salaam WordPress Meetup</b><span>Co-organizer</span></li>
+    </ul>
+  </section>
+
+  <section id="contact" class="cta">
+    <h2>Looking for an AI agent engineer or intern?</h2>
+    <p class="sub">I’m open to roles and internships. Send me a note and I’ll reply.</p>
+    <div class="btns"><a class="btn" id="mail" href="mailto:jumakitula0@gmail.com">Email me</a><a class="btn alt" href="https://wa.me/255711813131" target="_blank" rel="noopener">WhatsApp (Tanzania)</a><a class="btn alt" href="https://wa.me/917046076823" target="_blank" rel="noopener">WhatsApp (India)</a><a class="btn alt" href="https://linkedin.com/in/juma-bakari" target="_blank" rel="noopener">LinkedIn</a></div>
+  </section>
+  </main>
+  <footer>Juma Bakari · Rajkot, India · jumakitula0@gmail.com</footer>
+</div>
+
+<script>
+(function(){
+  var log=document.getElementById('log'),reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches,timers=[];
+  var steps=[
+    '<span class="d">goal</span> find an engineer who builds agents',
+    '<span class="k">plan</span> check projects, then check proof',
+    '<span class="k">tool</span> list_projects()',
+    '<span class="ok">ok</span>  agent backend with long-term memory',
+    '<span class="ok">ok</span>  sales agent for many businesses',
+    '<span class="ok">ok</span>  research team of agents on AWS Lambda',
+    '<span class="k">tool</span> check_recognition()',
+    '<span class="ok">ok</span>  Taiwan Best AI Awards 2026 finalist',
+    '<span class="k">answer</span> Juma Bakari. Scroll down to see how each one works.'
+  ];
+  function run(){
+    timers.forEach(clearTimeout);timers=[];log.innerHTML='';
+    steps.forEach(function(s,i){
+      var el=document.createElement('span');el.className='ln';el.innerHTML=s;log.appendChild(el);
+      if(reduce){el.className='ln on';return;}
+      timers.push(setTimeout(function(){el.className='ln on';},500+i*620));
+    });
+    var c=document.createElement('span');c.className='caret';log.appendChild(c);
+  }
+  run();
+  document.getElementById('replay').addEventListener('click',run);
+  var copy=document.getElementById('copy');
+  copy.addEventListener('click',function(){
+    var t='jumakitula0@gmail.com';
+    function done(m){copy.textContent=m;setTimeout(function(){copy.textContent='Copy my email';},2200);}
+    try{navigator.clipboard.writeText(t).then(function(){done('Copied');},function(){done(t);});}catch(e){done(t);}
+  });
+})();
+</script>
+</body>
+</html>
